@@ -32,9 +32,18 @@ function gulpAudioSprite(options) {
 
     function flush(callback) {
         var self = this;
+        var metamythic = false;
+        if (options.format == 'metamythic'){
+            options.format = 'howler';
+            metamythic = true;
+        }
         audiosprite(files, options, function(err, result) {
             if (err) {
                 return callback(new gutil.PluginError(PLUGIN_NAME, err));
+            }
+            
+            if(metamythic){
+                options.format = 'metamythic';
             }
 
             result = convertData(result, options, self);
