@@ -72,6 +72,10 @@ function convertData(data, options, self) {
         case 'createjs':
             data.src = urls[0];
             break;
+        case 'metamythic':
+            data.src = urls;
+            delete data.urls;
+            break;
         default:
             data.resources = urls;
     }
